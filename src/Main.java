@@ -5,7 +5,7 @@ public class Main {
         double[][] arr = new double[4][4];
         double[] b = new double[4];
         Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {   //заполнение матрицы в консоль
             for (int g = 0; g < 3; g++) {
                 System.out.println("Введите элемент матрицы");
                 arr[i][g] = scanner.nextDouble();
@@ -14,19 +14,16 @@ public class Main {
             b[i] = scanner.nextDouble();
         }
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) { // вывод матрицы в консоль
             for (int g = 0; g < 3; g++) {
                 System.out.print(arr[i][g] + " ");
             }
             System.out.println(b[i]);
         }
 
-        double pum = 0;
+        double pum = 0; // переменная запоминающая максимальное число
 
-        int reg_1 = 0;
-        int reg_2 = 0;
-
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {   //поиск максимального числа
             for (int g = 0; g < 3; g++) {
                 if (Math.abs(arr[i][g]) > Math.abs(arr[i][g + 1])) {
                     if(pum > arr[i][g]){
@@ -45,7 +42,7 @@ public class Main {
             }
         }
 
-        int i_1 = 0;
+        int i_1 = 0;// переменные запоминающие позиции максимального числа
         int g_1 = 0;
 
         System.out.println("Максимальный элемент =" + pum);
@@ -64,7 +61,7 @@ public class Main {
         double[] arr_1 = new double[4];
         double pum_1 = 0;
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) { //перестановка рядов
             if (i_1 != 0) {
                 arr_1[i] = arr[0][i];
                 arr[0][i] = arr[i_1][i];
@@ -76,7 +73,7 @@ public class Main {
         b[0] = b[i_1];
         b[i_1] = pum_1;
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {// перестановка строк
             arr_1[i] = arr[i][0];
             arr[i][0] = arr[i][g_1];
             arr[i][g_1] = arr_1[i];
@@ -84,7 +81,7 @@ public class Main {
 
         System.out.println();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {//вывод матрицы
             for (int g = 0; g < 3; g++) {
                 System.out.print(arr[i][g] + " ");
             }
@@ -93,7 +90,7 @@ public class Main {
 
         System.out.println("Преобразование");
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) { // деление всей матрицы на максимальное число
             for (int g = 0; g < 3; g++) {
                 arr[i][g] /= pum;
                 System.out.print(arr[i][g] + " ");
@@ -106,7 +103,7 @@ public class Main {
 
         pum_1 = arr[1][0];
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {//арифметические действия над матрицей
             arr[1][i] -= arr[0][i] * pum_1;
             if (i == 0) {
                 b[1] -= b[0] * pum_1;
@@ -129,7 +126,7 @@ public class Main {
         }
 
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {//вывод полученной матрицы
             for (int g = 0; g < 3; g++) {
                 System.out.print(arr[i][g] + " ");
             }
@@ -140,7 +137,7 @@ public class Main {
 
         double x, y, z;
 
-        z = b[2] / arr[2][2];
+        z = b[2] / arr[2][2];// нахождение коэффициентов
         System.out.println("z = " + z);
         y = (b[1] - arr[1][2] * z) / arr[1][1];
         System.out.println("y = " + y);
@@ -151,7 +148,7 @@ public class Main {
 
         double znach_1, znach_2, znach_3;
 
-        znach_1 = arr[0][0] * x + arr[0][1] * y + arr[0][2] * z;
+        znach_1 = arr[0][0] * x + arr[0][1] * y + arr[0][2] * z;//проверка конечного ответа
         System.out.println("znach_1 = " + znach_1);
         znach_2 = arr[1][0] * x + arr[1][1] * y + arr[1][2] * z;
         System.out.println("znach_2 = " + znach_2);
