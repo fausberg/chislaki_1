@@ -23,12 +23,24 @@ public class Main {
 
         double pum = 0;
 
+        int reg_1 = 0;
+        int reg_2 = 0;
+
         for (int i = 0; i < 3; i++) {
             for (int g = 0; g < 3; g++) {
                 if (Math.abs(arr[i][g]) > Math.abs(arr[i][g + 1])) {
-                    pum = arr[i][g];
+                    if(pum > arr[i][g]){
+                        continue;
+                    }else {
+                        pum = arr[i][g];
+                    }
                 } else {
-                    pum = arr[i][g + 1];
+                    if(pum > arr[i][g]){
+                        continue;
+                    }else {
+                        pum = arr[i][g + 1];
+                    }
+
                 }
             }
         }
@@ -70,6 +82,17 @@ public class Main {
             arr[i][g_1] = arr_1[i];
         }
 
+        System.out.println();
+
+        for (int i = 0; i < 3; i++) {
+            for (int g = 0; g < 3; g++) {
+                System.out.print(arr[i][g] + " ");
+            }
+            System.out.println(b[i]);
+        }
+
+        System.out.println("Преобразование");
+
         for (int i = 0; i < 3; i++) {
             for (int g = 0; g < 3; g++) {
                 arr[i][g] /= pum;
@@ -97,6 +120,12 @@ public class Main {
             if (i == 0) {
                 b[2] -= b[0] * pum_1;
             }
+        }
+
+        pum_1 = 4;
+
+        for (int i = 0; i < 3; i++) {
+            arr[i][1] -= arr[i][2] * pum_1;
         }
 
 
