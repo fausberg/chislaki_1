@@ -1,9 +1,10 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        double[][] arr = new double[4][4];
-        double[] b = new double[4];
+        double[][] arr = new double[3][3];
+        double[] b = new double[3];
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < 3; i++) {   //заполнение матрицы в консоль
             for (int g = 0; g < 3; g++) {
@@ -25,6 +26,9 @@ public class Main {
 
         for (int i = 0; i < 3; i++) {   //поиск максимального числа
             for (int g = 0; g < 3; g++) {
+                if(g == 2){
+                    break;
+                }
                 if (Math.abs(arr[i][g]) > Math.abs(arr[i][g + 1])) {
                     if(pum > arr[i][g]){
                         continue;
@@ -136,6 +140,8 @@ public class Main {
         System.out.println();
 
         double x, y, z;
+        double[][] arr_2 = new double[3][1];
+        double[][] arr_3 = new double[3][1];
 
         z = b[2] / arr[2][2];// нахождение коэффициентов
         System.out.println("z = " + z);
@@ -143,16 +149,107 @@ public class Main {
         System.out.println("y = " + y);
         x = (b[0] - arr[0][2] * z - arr[0][1] * y) / arr[0][0];
         System.out.println("x = " + x);
+        arr_2[0][0] = z;
+        arr_2[1][0] = y;
+        arr_2[2][0] = x;
+        System.out.println(arr_2[0][0]);
+        System.out.println(arr_2[1][0]);
+        System.out.println(arr_2[2][0]);
 
         System.out.println();
+        System.out.println(Arrays.toString(arr_2));
 
         double znach_1, znach_2, znach_3;
 
-        znach_1 = arr[0][0] * x + arr[0][1] * y + arr[0][2] * z;//проверка конечного ответа
-        System.out.println("znach_1 = " + znach_1);
-        znach_2 = arr[1][0] * x + arr[1][1] * y + arr[1][2] * z;
-        System.out.println("znach_2 = " + znach_2);
-        znach_3 = arr[2][0] * x + arr[2][1] * y + arr[2][2] * z;
-        System.out.println("znach_3 = " + znach_3);
+
+        int p_i = 0;
+        int p_g = 0;
+        int p = 0;
+        while (p_i < arr.length) {
+            if(arr[0].length != arr_2.length){
+                break;
+            }
+            for (int i = 0; i < arr.length; i++) {
+                for (int g = 0; g < arr[i].length; g++) {
+                    arr_3[p_i][p_g] += arr[p][g] * arr_2[g][0];
+                }
+                p_g++;
+                if (p_g == arr_3[i].length) {
+                    p_g = 0;
+                }
+            }
+            p_i++;
+            p++;
+            if(p == arr.length){
+                p = 0;
+            }
+        }
+
+        for (int i = 0; i < arr_3.length; i++) {
+            for (int g = 0; g < arr_3[i].length; g++) {
+                System.out.print(arr_3[i][g] + " ");
+            }
+            System.out.println();
+        }
+
+        double[] F = new double[3];
+
+        System.out.println(Arrays.toString(b));
+
+        for(int i = 0; i < F.length; i++){
+            F[i] =arr_3[i][0] - b[i];
+        }
+        System.out.println(Arrays.toString(F));
+        System.out.println();
+        double x1,y1,z1;
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int g = 0; g < arr[i].length; g++) {
+                System.out.print(arr[i][g] + " ");
+            }
+            System.out.println(F[i]);
+        }
+
+        z1 = F[2] / arr[2][2];// нахождение коэффициентов
+        System.out.println("z1 = " + z1);
+        y1 = (F[1] - arr[1][2] * z1) / arr[1][1];
+        System.out.println("y1 = " + y1);
+        x1 = (F[0] - arr[0][2] * z1 - arr[0][1] * y1) / arr[0][0];
+        System.out.println("x1 = " + x1);
+
+        double maxX = arr_2[0][0];
+
+        for (int i = 0; i < arr_2.length; i++) {
+            for (int g = 0; g < arr_2[i].length; g++) {
+                if(maxX < arr_2[i][g]){
+                    maxX = arr_2[i][g];
+                }
+            }
+        }
+        System.out.println(maxX);
+        System.out.println(Arrays.toString(F));
+        for(int i = 0; i < arr_2.length; i++){
+            for(int g = 0; g < arr_2[i].length; g++){
+                System.out.print(arr_2[i][g]);
+            }
+            System.out.println();
+        }
+
+        F[0] -= arr_2[0][0];
+        F[1] -= arr_2[1][0];
+        F[2] -= arr_2[2][0];
+
+        System.out.println(Arrays.toString(F));
+        double maxF = F[0];
+        for(int i = 0; i < F.length; i++){
+            if(maxF < F[i]){
+                maxF = F[i];
+            }
+        }
+        System.out.println(maxX);
+        System.out.println(maxF);
+        double pog = maxF/maxX;
+        System.out.println(pog);
     }
+
 }
